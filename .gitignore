@@ -1,0 +1,8 @@
+node_modules
+yarn.lock
+
+# project
+*.js
+*.wxss
+!gulpfile.js
+!libs/*.js

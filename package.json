@@ -1,0 +1,23 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "scripts": {
+    "tsc": "./node_modules/typescript/bin/tsc",
+    "compile": "tsc",
+    "dev": "gulp watch"
+  },
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@gitee.com:gyshijiamoni/activity.git"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.15",
+    "gulp": "^3.9.1",
+    "gulp-less": "^4.0.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sequence": "^1.0.0",
+    "regenerator": "^0.13.3",
+    "typescript": "^3.2.2"
+  }
+}

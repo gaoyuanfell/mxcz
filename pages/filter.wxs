@@ -1,0 +1,58 @@
+function number2(number) {
+  if (("" + number).length === 1) {
+    return "0" + number
+  }
+  return "" + number
+}
+
+function weekStr(week) {
+  switch (week) {
+    case 0:
+      return '周日';
+    case 1:
+      return '周一';
+    case 2:
+      return '周二';
+    case 3:
+      return '周三';
+    case 4:
+      return '周四';
+    case 5:
+      return '周五';
+    case 6:
+      return '周六';
+  }
+}
+
+//日期格式化
+var formatDate = function (value, format) {
+  var vs = value.split(getRegExp('[-\s:\.]'))
+  vs = vs.map(function (v) {
+    return parseInt(v)
+  })
+  var date = getDate(vs[0], vs[1] - 1, vs[2], vs[3] || 0, vs[4] || 0, vs[5] || 0)
+  if (!format) {
+    format = "yyyy-MM-dd HH:mm ww"
+  }
+  var o = {
+    "yyyy": number2(date.getFullYear()),
+    "MM": number2(date.getMonth() + 1), // 月份
+    "dd": number2(date.getDate()), // 日
+    "HH": number2(date.getHours()), // 小时
+    "mm": number2(date.getMinutes()), // 分
+    "ss": number2(date.getSeconds()), // 秒
+    "ww": weekStr(date.getDay()), // 周
+  };
+  var str = "";
+  var da = format.split(getRegExp('[-\s:]'))
+  for (var index = 0; index < da.length; index++) {
+    var f = da[index];
+    var i = format.indexOf(f)
+    str += o[f] + format.substring(i + f.length, i + f.length + 1)
+  }
+  return str
+}
+
+module.exports = {
+  formatDate: formatDate
+}
