@@ -178,8 +178,10 @@
 <view class="mode">
   <view class="mask"></view>
   <view class="mode-container">
-    <view>
+    <view class="active-btn">
       <text class="icon icon-duihao"></text>
+      报名成功
     </view>
+    <view class="active-btn">去寄快递</view>
   </view>
 </view>
