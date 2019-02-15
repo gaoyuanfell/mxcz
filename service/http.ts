@@ -114,15 +114,20 @@ const request = new Request();
 const uploadFile = new UploadFile();
 
 // 请求拦截器 请求
-request.interceptors.request.use((option: wx.RequestOption) => {
-  if (!option.header) option.header = {};
-  option.header["xcxSourceId"] = globalConfig.xcxSourceId;
-  option.header["tokenSign"] = globalConfig.tokenSign;
-  option.header["v"] = globalConfig.v;
-  return option;
-});
+request.interceptors.request.use(
+  (option: wx.RequestOption) => {
+    if (!option.header) option.header = {};
+    option.header["xcxSourceId"] = globalConfig.xcxSourceId;
+    option.header["tokenSign"] = globalConfig.tokenSign;
+    option.header["v"] = globalConfig.v;
+    return option;
+  },
+  error => {
+    return error;
+  }
+);
 
-// 请求拦截器 响应
+// 响应拦截器 响应
 request.interceptors.response.use(
   (response: wx.RequestSuccessCallbackResult) => {
     if (response.statusCode == 200) {
@@ -138,13 +143,18 @@ request.interceptors.response.use(
 );
 
 // 上传文件拦截器 请求
-uploadFile.interceptors.request.use((option: wx.UploadFileOption) => {
-  if (!option.header) option.header = {};
-  option.header["xcxSourceId"] = globalConfig.xcxSourceId;
-  option.header["tokenSign"] = globalConfig.tokenSign;
-  option.header["v"] = globalConfig.v;
-  return option;
-});
+uploadFile.interceptors.request.use(
+  (option: wx.UploadFileOption) => {
+    if (!option.header) option.header = {};
+    option.header["xcxSourceId"] = globalConfig.xcxSourceId;
+    option.header["tokenSign"] = globalConfig.tokenSign;
+    option.header["v"] = globalConfig.v;
+    return option;
+  },
+  error => {
+    return error;
+  }
+);
 
 // 上传文件拦截器 响应
 uploadFile.interceptors.response.use(
@@ -180,7 +190,10 @@ export function get(
   data: string | IAnyObject | ArrayBuffer,
   option: wx.RequestOption = { url: BASE_URL + url, data: data }
 ) {
+  if(!option) option = {url: BASE_URL + url, data: data}
   option.method = "GET";
+  if(!option.url) option.url = BASE_URL + url
+  if(!option.data) option.data = data
   return request.request(option);
 }
 
@@ -198,7 +211,10 @@ export function postJson(
   data: string | IAnyObject | ArrayBuffer,
   option: wx.RequestOption = { url: BASE_URL + url, data: data }
 ) {
+  if(!option) option = {url: BASE_URL + url, data: data}
   option.method = "POST";
+  if(!option.url) option.url = BASE_URL + url
+  if(!option.data) option.data = data
   return request.request(option);
 }
 
@@ -207,10 +223,12 @@ export function postForm(
   data: string | IAnyObject | ArrayBuffer,
   option: wx.RequestOption = { url: BASE_URL + url, data: data }
 ) {
+  if(!option) option = {url: BASE_URL + url, data: data}
   option.method = "POST";
+  if(!option.url) option.url = BASE_URL + url
+  if(!option.data) option.data = data
   if (!option.header) option.header = {};
-  option.header["content-type"] =
-    "application/x-www-form-urlencoded; charset=utf-8";
+  option.header["content-type"] = "application/x-www-form-urlencoded; charset=utf-8";
   return request.request(option);
 }
 

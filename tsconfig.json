@@ -6,20 +6,25 @@
     "target": "ES5",
     "allowJs": false,
     "experimentalDecorators": true,
-    "noImplicitThis": true,
-    "noImplicitReturns": true,
+    "noImplicitThis": false,
+    "noImplicitReturns": false,
     "alwaysStrict": true,
     "inlineSourceMap": true,
     "inlineSources": true,
     "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "strict": true,
     "removeComments": true,
     "pretty": true,
-    "strictPropertyInitialization": true,
+    "strictPropertyInitialization": false,
+    "strictBindCallApply": false,
     "typeRoots": [
       "typings"
+    ],
+    "lib": [
+      "es2015",
+      "dom"
     ]
   },
   "include": [

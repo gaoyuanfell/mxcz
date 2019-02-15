@@ -6,17 +6,11 @@ import { init } from "./utils/init";
 //app.ts
 export interface IMyApp {
   userInfoReadyCallback?(res: wx.UserInfo): void;
-  globalData: {
-    userInfo?: wx.UserInfo;
-    hasUserInfo?:boolean;
-  };
 }
 
 App<IMyApp>({
-  globalData: {},
   async onLaunch(options: App.ILaunchShowOption) {
     init()
-
     globalConfig.shareTicket = options.shareTicket
     if(options.shareTicket){
       wx.getShareInfo({
@@ -34,7 +28,6 @@ App<IMyApp>({
     if(getSetting.authSetting["scope.userInfo"]){
       const getUserInfo = await GetUserInfo()
       globalConfig.userInfo = getUserInfo.userInfo
-      console.info(getUserInfo.userInfo)
     }
     wxSubject.next()
   }

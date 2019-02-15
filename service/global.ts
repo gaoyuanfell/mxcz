@@ -8,9 +8,6 @@ class Global {
   shareData?:wx.GetShareInfoSuccessCallbackResult = undefined // 解析shareTicket后数据
 
   userInfo?: wx.UserInfo = undefined; // 用户信息
-
-  activityMap:any = null // 地图详细数据
-  mapsData:any = null; // 地图初始化数据
 }
 
 export const globalConfig = new Global();

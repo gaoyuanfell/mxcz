@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.4.0",
+	"libVersion": "2.6.0",
 	"projectname": "mxcz",
 	"scripts": {
 		"beforeCompile": "npm run compile",
@@ -12,8 +12,41 @@
 		"beforeUpload": "npm run compile"
 	},
 	"setting": {
-		"newFeature": true
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false,
+		"uglifyFileName": true
 	},
 	"appid": "wx2aba1277682b54cd",
-	"condition": {}
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "detail",
+					"pathName": "pages/detail/detail",
+					"scene": null
+				}
+			]
+		}
+	}
 }

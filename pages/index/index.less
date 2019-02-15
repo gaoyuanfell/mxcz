@@ -1,0 +1,85 @@
+.card-list{
+  border-radius: 10rpx;
+  border: 1px solid #ccc;
+  margin-bottom: 40rpx;
+  position: relative;
+  .card-img{
+    height: 440rpx;
+    border-radius: 10rpx;
+    overflow: hidden;
+    image{
+      width: 100%;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+  .card-body{
+    padding:15rpx;
+    padding-top: 0;
+  }
+  .card-title{
+    font-weight: 700;
+    font-size: 32rpx;
+    border-bottom: 1px solid #ccc;
+    padding: 10rpx 0;
+  }
+  .card-info{
+    color:#666;
+    font-size:24rpx;
+    border-bottom: 1px solid #ccc;
+    padding: 10rpx 0;
+    .icon{
+      color:#666;
+      padding-right:15rpx;
+    }
+    > .item {
+      padding: 2rpx 0;
+    }
+  }
+  .card-people{
+    > view:first-of-type{
+      color:#666;
+      font-size:24rpx;
+      padding: 10rpx 0;
+    }
+    .card-people-head{
+      overflow-y: hidden;
+      overflow-x: auto;
+      position: relative;
+      -webkit-overflow-scrolling: touch;
+      height: 90rpx;
+      .head-item{
+        width: 80rpx;
+        min-width: 80rpx;
+        height: 80rpx;
+        border: 2px solid #bbbbbb;
+        border-radius: 50%;
+        overflow: hidden;
+        position: absolute;
+        > image {
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+    }
+  }
+  .card-tip{
+    position:absolute;
+    width:240rpx;
+    height:80rpx;
+    line-height: 80rpx;
+    top:60rpx;
+    left:-25rpx;
+    border-top-right-radius: 10rpx;
+    border-bottom-right-radius: 10rpx;
+    text-align:center;
+    font-size:28rpx;
+    color: #fff;
+    &.active{
+      background: red;
+    }
+    &.disabled{
+      background: red;
+    }
+  }
+}

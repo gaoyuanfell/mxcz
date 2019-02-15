@@ -1,0 +1,273 @@
+/* pages/detail/detail.wxss */
+.scroll{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-bottom: 80rpx;
+}
+
+.swiper-list{
+  position: relative;
+  .swiper{
+    height: 440rpx;
+  }
+  .slide-image{
+    width: 100%;
+  }
+  .swiper-tip{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.3);
+    height:56rpx;
+    line-height: 56rpx;
+    text-align: right;
+    font-size: 28rpx;
+    color: #fff;
+    padding: 0 15rpx;
+    text{
+      color: #FF0000;
+    }
+  }
+}
+
+.card-body{
+  border: 1rpx solid #ccc;
+  .card-title{
+    font-weight: 700;
+    font-size: 32rpx;
+    border-bottom: 1px solid #ccc;
+    padding: 10rpx 0;
+  }
+  .card-info{
+    color:#666;
+    font-size:24rpx;
+    padding: 10rpx 0;
+    .icon{
+      color:#666;
+      padding-right:15rpx;
+    }
+    > .item {
+      padding: 2rpx 0;
+      border-bottom: 1rpx solid #ccc;
+      &:last-child{
+        border-bottom: none;
+      }
+    }
+    .dizhi{
+      margin-left: auto;
+    }
+  }
+  .user-data{
+    .user-head{
+      width: 80rpx;
+      min-width: 80rpx;
+      height: 80rpx;
+      border: 1rpx solid #bbbbbb;
+      border-radius: 50%;
+      overflow: hidden;
+      > image {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+    .user-info{
+      margin-left: 15rpx;
+    }
+    .user-dianhua{
+      margin-left: auto;
+    }
+  }
+}
+
+.tabs-data{
+  .active-title-scroll{
+    padding-top: 60rpx;
+    width: 100%;
+  }
+  .active-title{
+    font-size: 32rpx;
+    font-weight: 700;
+    padding-bottom: 30rpx;
+  }
+  .active-desc{
+    font-size: 26rpx;
+    color: #333;
+  }
+
+  .active-foods{
+    font-size: 26rpx;
+    color: #333;
+    border: 1rpx solid #ccc;
+    padding: 10rpx;
+    .item{
+      border-bottom: 1rpx solid #ccc;
+      padding: 10rpx 0;
+      &:first-child{
+        padding-top: 0;
+      }
+      &:last-child{
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+    }
+  }
+  .active-agency{
+    font-size: 28rpx;
+    .agency{
+      > view:nth-child(1){
+        width: 80rpx;
+        min-width: 80rpx;
+        height: 80rpx;
+        border: 1rpx solid #bbbbbb;
+        border-radius: 50%;
+        overflow: hidden;
+        > image {
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+      > view:nth-child(2){
+        > view:nth-child(1){
+          font-weight: 700;
+          font-size: 32rpx;
+        }
+        > view:nth-child(2){
+          color: #999;
+          font-size: 24rpx;
+        }
+      }
+    }
+    .agency-data{
+      .icon-dianhua{
+        font-size: 56rpx;
+        color: #ff6633;
+      }
+    }
+  }
+  .active-people{
+    .item{
+      .people-data{
+        > view:nth-child(1){
+          width: 80rpx;
+          min-width: 80rpx;
+          height: 80rpx;
+          border: 1rpx solid #bbbbbb;
+          border-radius: 50%;
+          overflow: hidden;
+          > image {
+            max-width: 100%;
+            max-height: 100%;
+          }
+        }
+        > view:nth-child(2){
+          > view:nth-child(1){
+            font-size: 32rpx;
+            font-weight: 700;
+          }
+          > view:nth-child(2){
+            font-size: 24rpx;
+            color: #999;
+          }
+        }
+      }
+      .people-data-text{
+        font-size: 24rpx;
+        color: #999;
+      }
+    }
+  }
+  .active-comment{
+    .comment-list{
+      .comment-text{
+        font-size: 24rpx;
+      }
+      .comment-time{
+        font-size: 24rpx;
+        color: #999;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+.nav-list{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding:10rpx 30rpx;
+  border-bottom: 1rpx solid #ccc;
+  background: #fff;
+  opacity:0;
+  .item{
+    white-space: nowrap;
+    padding-right:20rpx;
+    font-size: 28rpx;
+    &:last-child{
+      padding-right: none;
+    }
+    &.active{
+      font-weight: 700;
+    }
+  }
+}
+
+.active-into{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 80rpx;
+  border-top: 1rpx solid #ccc;
+  > view:nth-child(1){
+    order: 1;
+    width: 18%;
+    height: 100%;
+    padding-left: 25rpx;
+    .icon-fenxiang{
+      font-size: 56rpx;
+      line-height: 80rpx;
+    }
+  }
+  > view:nth-child(2){
+    order: 2;
+    text-align: center;
+    width: 50%;
+    font-size: 34rpx;
+    > text{
+      font-weight: 700;
+      color: #cc0000;
+      font-size: 40rpx;
+    }
+  }
+  > view:nth-child(3){
+    order: 3;
+    width: 32%;
+    height: 100%;
+    border-left: 1rpx solid transparent;
+    color: #fff;
+    font-size: 32rpx;
+    text-align: center;
+    > view:last-child{
+      font-size: 24rpx;
+    }
+    &.active{
+      background: #ff6600;
+      border-left-color: #ff6600;
+    }
+    &.disabled{
+      background: #999999;
+      border-left-color: #999999;
+    }
+  }
+}
+
+
+
+
