@@ -7,6 +7,8 @@ https://mp.weixin.qq.com
 
 http://192.168.100.149:8181/  // 文档 活动小程序
 
+https://dzncfv.axshare.com
+
 import { IMyApp } from '../../app'
 import { wxSubject } from '../../utils/util';
 
@@ -26,5 +28,17 @@ Page({
     wxSubject.subscribe(() => {
       this.startLoad();
     });
+  }
+})
+
+Component({
+  properties: {
+
+  },
+  data: {
+
+  },
+  methods: {
+
   }
 })

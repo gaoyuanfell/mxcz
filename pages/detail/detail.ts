@@ -1,10 +1,12 @@
 import { IMyApp } from '../../app'
 import { wxSubject } from '../../utils/util';
+import { webBp_ } from '../../service/service';
 
 const app = getApp<IMyApp>()
 
 Page({
   data: {
+    startLoad: false,
     imgUrls: [
       '/img/1.jpg',
       '/img/2.jpg',
@@ -21,7 +23,56 @@ Page({
     toView: '',
     scrollTop: 0,
     opacity: 0,
-    // isTap: false,
+
+    goodsList:[],
+    goods:{
+      number: 1
+    },
+    activity:{},
+    user:{},
+  },
+
+  addGoods(){
+    this.data.goodsList.push(this.data.goods)
+    this.setData({
+      goodsList: this.data.goodsList
+    });
+    this.data.goods = {number: 1}
+  },
+  removeGoods(e){
+    let index = e.currentTarget.dataset.index;
+    this.data.goodsList.splice(index,1)
+    this.setData({
+      goodsList: this.data.goodsList
+    });
+  },
+  expressChange(e){
+    let name = e.currentTarget.dataset.name;
+    let value = e.detail.value;
+    this.setData({
+      [name]: value
+    });
+  },
+  goodsSubmit(){
+    console.info()
+  },
+  getPhoneNumber(e){
+    if ('getPhoneNumber:ok' != e.detail.errMsg) {
+      wx.showToast({
+        title: '绑定手机号码后才能继续下一步',
+        icon: 'none'
+      })
+      return;
+    }
+    webBp_({
+      encrypted: e.detail.encryptedData,
+      iv: e.detail.iv
+    }).then(res => {
+      console.info(res)
+    })
+  },
+  userDataSubmit(){
+    console.info(this.data.user)
   },
   scroll(e){
     let scrollTop = e.detail.scrollTop
@@ -70,7 +121,17 @@ Page({
     //   console.info(res.top)
     // }).exec()
   },
+  bindKeyInput(e) {
+    let name = e.currentTarget.dataset.name;
+    let value = e.detail.value;
+    this.setData({
+      [name]: value
+    });
+  },
   startLoad(){
+    this.setData({
+      'startLoad':true
+    })
     console.info('登陆了')
   },
   onLoad() {

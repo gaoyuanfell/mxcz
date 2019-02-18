@@ -1,0 +1,90 @@
+.user-box{
+  background: #fff;
+  border: 1rpx solid #ccc;
+  padding: 15rpx;
+  border-radius: 20rpx;
+  > view:nth-child(1){
+    width: 120rpx;
+    height: 120rpx;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1rpx solid #ccc;
+    image{
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+  > view:nth-child(2){
+    flex: 1;
+    padding-left: 15rpx;
+    > view:nth-child(1){
+      margin-bottom: 20rpx;
+      > view:nth-child(1){
+        font-weight: 700;
+        font-size: 36rpx;
+      }
+      > view:nth-child(2){
+        color: #666;
+        font-size: 28rpx;
+      }
+    }
+    > view:nth-child(2){
+      border-top: 1rpx solid #ccc;
+      padding-top: 15rpx;
+      color: #bcbcbc;
+      font-size: 28rpx;
+    }
+  }
+}
+
+.user-number{
+  padding: 15rpx 0;
+  > view:nth-child(1){
+    font-weight: 700;
+    font-size: 36rpx;
+    > text{
+      font-size: 40rpx;
+      color: #990000;
+    }
+  }
+  > view:nth-child(2){
+    color: #0099CC;
+    font-size: 28rpx;
+  }
+}
+
+.user-data-list{
+  border: 1rpx solid #ccc;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+  .item-img{
+    height: 440rpx;
+    border-radius: 10rpx;
+    overflow: hidden;
+    image{
+      width: 100%;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+  .item-title{
+    padding: 15rpx;
+    font-size: 32rpx;
+    color: #666;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+  }
+  .item-back{
+    position: absolute;
+    top:20rpx;
+    right:20rpx;
+    border: 1rpx solid rgba(121, 121, 121, 1);
+    padding: 10rpx;
+    border-radius: 10rpx;
+    background: rgba(255, 255, 255, 0.38);
+    color: #333;
+    font-size: 24rpx;
+  }
+}

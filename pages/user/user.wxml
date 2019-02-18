@@ -1,0 +1,37 @@
+<!--pages/user/user.wxml-->
+<view class="container">
+  <view class="user-box flex-center">
+    <view>
+      <image src="/img/5.jpg" />
+    </view>
+    <view>
+      <view class="flex-justify-between-align-center">
+        <view>程潇潇</view>
+        <view>爱心积分：17892</view>
+      </view>
+      <view>
+        种事了拂衣去，实为当代大侠！
+      </view>
+    </view>
+  </view>
+
+  <view class="user-number flex-justify-between-align-center">
+    <view>
+      已参与
+      <text>27</text>
+      次
+    </view>
+    <view>
+      生成我的爱心报告》
+    </view>
+  </view>
+
+  <view class="user-data-list" wx:for="{{[1,2,3,4,5,6]}}" wx:for-index="index" wx:for-item="item" wx:key="*this">
+    <view class="item-img">
+      <image src="/img/1.jpg" />
+    </view>
+    <view class="item-title">(青山行动)大大可5月19日大觉寺捡垃圾,(青山行动)大大可5月19日大觉寺捡垃圾,</view>
+    <view class="item-back">查看活动反馈</view>
+  </view>
+
+</view>

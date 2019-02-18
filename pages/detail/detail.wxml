@@ -48,17 +48,14 @@
       <view class="active-desc">
         今年 1 月，省委省政府下达的精神要求，确定台州市新增对四川省乐山市峨边彝族自治县开展东西部扶贫协作任务，由椒江区实施对口支援。考察归来后，向全市人民发起了捐衣 " 集结号 "。这是首批 " 情系峨边温暖相伴 " 爱心物资，它们是历经数月、集结社会各界爱心力量汇聚而成。即将从这里发往四川省乐山市峨边彝族自治县，为那里的人们带去温暖。
       </view>
-
       <view class="active-title-scroll" id="b"></view>
       <view class="active-title">活动计划</view>
       <view class="active-desc">
         献一片爱心，送一份温暖！随着经济社会的发展，大家的生活水平不断提高，很多大学生都擅于网购因此都存积着不少闲置的旧衣物，将这些旧衣物作为不可回收利用的普通垃圾处理掉是对资源的浪费。为了积极帮扶生活有困难的家庭和孩子，使他们渡过难关、感受到爱心和温暖，我们将开展此次捐衣活动。
       </view>
-
       <view class="active-title-scroll" id="c"></view>
       <view class="active-title">期望效果</view>
       <view class="active-desc">积极弘扬奉献精神、社会责任心，关注社会公益事业。在学校营造良好风气，体现人与人之间的关</view>
-
       <view class="active-title-scroll" id="d"></view>
       <view class="active-title">需求物品清单</view>
       <view class="active-foods">
@@ -79,8 +76,6 @@
           <view>20/20</view>
         </view>
       </view>
-
-
       <view class="active-title-scroll" id="e"></view>
       <view class="active-title">执行机构</view>
       <view class="active-agency">
@@ -102,8 +97,6 @@
         </view>
         <view>组织住所 ：上海市闵行区吴中路699号C区域一层W043</view>
       </view>
-
-
       <view class="active-title-scroll" id="f"></view>
       <view class="active-title">已参与</view>
       <view class="active-people">
@@ -132,22 +125,14 @@
           <view class="people-data-text">手套 X 1</view>
         </view>
       </view>
-
       <view class="active-title-scroll" id="g"></view>
-
       <view class="active-title">活动反馈</view>
-
       <view class="active-comment">
         <view class="comment-list flex">
-          <view class="comment-text">
-            积极弘扬奉献精神、社会责任心，关注社会公益事业。在学校营造良好风气，体现人与人之间的关
-          </view>
-          <view class="comment-time">
-            2018-12-11
-          </view>
+          <view class="comment-text">积极弘扬奉献精神、社会责任心，关注社会公益事业。在学校营造良好风气，体现人与人之间的关</view>
+          <view class="comment-time">2018-12-11</view>
         </view>
       </view>
-
     </view>
   </view>
 </scroll-view>
@@ -160,7 +145,6 @@
   <view class="item" data-id="f" bindtap="scrollTo">已参与</view>
   <view class="item" data-id="g" bindtap="scrollTo">活动反馈</view>
 </view>
-
 <view class="active-into flex-justify-between-align-center">
   <view>
     <text class="icon icon-fenxiang"></text>
@@ -175,13 +159,100 @@
   </view>
 </view>
 
-<view class="mode">
+<!-- <view class="mode">
   <view class="mask"></view>
   <view class="mode-container">
-    <view class="active-btn">
+    <view class="sign_up flex-center">
       <text class="icon icon-duihao"></text>
       报名成功
     </view>
     <view class="active-btn">去寄快递</view>
+  </view>
+</view> -->
+
+<!-- <view class="mode">
+  <view class="mask"></view>
+  <view class="mode-container">
+    <view class="active-address flex-wrap-align-center">
+      <view>收件人： 程XX</view>
+      <view>收件电话：158********</view>
+      <view>收件地址：上海市徐汇区上中路159号</view>
+    </view>
+    <view class="active-btn">填写物流单号</view>
+  </view>
+</view> -->
+
+<!-- <view class="mode">
+  <view class="mask"></view>
+  <view class="mode-container">
+    <view class="active-express">
+
+      <view class="flex-wrap label-box">
+        <view class="label-btn" wx:for="{{goodsList}}" wx:for-index="index" wx:for-item="item" wx:key="*this">
+          <text>{{item.name}}</text>
+          <text class="icon icon-close" data-item="{{item}}" data-index="{{index}}" bindtap="removeGoods"></text>
+        </view>
+      </view>
+
+      <view class="goods flex">
+        <view class="form-ctrl">
+          <picker class="goods-name" mode="selector" range="{{['a','b','c','d']}}" data-name="goods.name" bindchange="expressChange">
+            <view class="selector-text">
+              选择捐赠物品类型
+            </view>
+          </picker>
+        </view>
+        <view class="form-ctrl goods-number">
+          <input class="form-input" value="1" placeholder="数量" data-name="goods.number" bindinput="bindKeyInput"/>
+        </view>
+        <button class="add-goods" bind:tap="addGoods">+ 添加</button>
+      </view>
+
+      <view class="form-ctrl">
+        <picker mode="selector" range="{{[1,2,3,4]}}" data-name="activity.order" bindchange="expressChange">
+          <view class="selector-text">
+            选择快递
+          </view>
+        </picker>
+      </view>
+      <view class="form-ctrl">
+        <input class="form-input" placeholder="填写编号" data-name="activity.number" bindinput="bindKeyInput"/>
+      </view>
+      <view class="form-ctrl">
+        <textarea class="form-input" placeholder="留言" data-name="activity.remark" bindinput="bindKeyInput"></textarea>
+      </view>
+
+    </view>
+    <view class="active-btn" bind:tap="goodsSubmit">提交</view>
+  </view>
+</view> -->
+
+<!-- <view class="mode">
+  <view class="mask"></view>
+  <view class="mode-container">
+    <view class="active-require flex-wrap-align-center">
+      <view>1.维护义工服务形象。统一穿着义工马甲，态度热情，礼貌待人，展现出良好的义工服务形象。</view>
+      <view>2.保证服务到岗。守时及紧守工作岗位；中途轮流休息，保证有人在岗。</view>
+      <view>3.宣传方面：遇到媒体记者采访，建议不随意作答，礼貌建议其采访烈士陵园相关工作人员。</view>
+      <view>提交联系方式和报名选择日期，由工作人员随后联系安排。</view>
+    </view>
+    <button open-type="getPhoneNumber" bind:getphonenumber="getPhoneNumber">我要报名</button>
+    <view class="active-btn" >我要报名</view>
+  </view>
+</view> -->
+
+<view class="mode">
+  <view class="mask"></view>
+  <view class="mode-container">
+    <view class="active-express">
+      <view class="form-ctrl">
+        <input class="form-input" placeholder="请留下您的姓名" data-name="user.name" bindinput="bindKeyInput"/>
+      </view>
+      <view class="form-ctrl">
+        <input class="form-input" placeholder="请确认您的联系方式" data-name="user.number" bindinput="bindKeyInput"/>
+      </view>
+    </view>
+    <!-- <button open-type="getPhoneNumber" bind:getphonenumber="getPhoneNumber">我要报名</button> -->
+    <view class="active-btn" bind:tap="userDataSubmit">提交</view>
   </view>
 </view>

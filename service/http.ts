@@ -119,6 +119,7 @@ request.interceptors.request.use(
     if (!option.header) option.header = {};
     option.header["xcxSourceId"] = globalConfig.xcxSourceId;
     option.header["tokenSign"] = globalConfig.tokenSign;
+    option.header["token"] = globalConfig.token;
     option.header["v"] = globalConfig.v;
     return option;
   },

@@ -24,6 +24,7 @@ App<IMyApp>({
     // 登陆
     let lRes:any = await login_();
     globalConfig.tokenSign = lRes.Data
+    globalConfig.token = lRes.token
     const getSetting = await GetSetting()
     if(getSetting.authSetting["scope.userInfo"]){
       const getUserInfo = await GetUserInfo()

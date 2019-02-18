@@ -1,0 +1,24 @@
+@height:100rpx;
+.main{
+  height:calc(100vh - @height - 1rpx);
+  margin-bottom: @height;
+}
+.tabs{
+  position: fixed;
+  z-index:10;
+  bottom: 0;
+  width: 100%;
+  height: @height;
+  border-top: 1rpx solid #ccc;
+  background: #fff;
+  .item{
+    flex: 1;
+    height: 100%;
+    line-height: @height;
+    text-align: center;
+    border-right: 1rpx solid #ccc;
+    &:last-child{
+      border-right: none;
+    }
+  }
+}

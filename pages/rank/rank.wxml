@@ -1,0 +1,13 @@
+<!--pages/rank/rank.wxml-->
+<view class="container">
+  <view class="rank-list flex-center" wx:for="{{[1,2,3,4,5,6]}}" wx:for-index="index" wx:for-item="item" wx:key="*this">
+    <view>
+      <image src="/img/5.jpg" />
+    </view>
+    <view>闪光少女</view>
+    <view>
+      <view>爱心积分：8234</view>
+      <view>参与活动：13次</view>
+    </view>
+  </view>
+</view>

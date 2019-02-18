@@ -1,0 +1,35 @@
+.rank-list{
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #ccc;
+  &:last-child{
+    border-bottom: none;
+  }
+  > view:nth-child(1){
+    width: 100rpx;
+    height: 100rpx;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1rpx solid #ccc;
+    margin-left:0;
+    image{
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+  > view:nth-child(2){
+    font-size: 32rpx;
+    font-weight: 700;
+    margin-right: auto;
+    margin-left: 15rpx;
+  }
+  > view:nth-child(3){
+    font-size: 28rpx;
+    color: #333;
+    > view:nth-child(1){
+      padding-bottom: 5rpx;
+    }
+    > view:nth-child(2){
+      padding-top: 5rpx;
+    }
+  }
+}

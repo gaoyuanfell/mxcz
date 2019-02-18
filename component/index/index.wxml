@@ -1,6 +1,4 @@
-<!-- <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button> -->
-<!-- <wxs module="filter" src="./../filter.wxs"></wxs> -->
-
+<!--component/index.wxml-->
 <view class="container">
   <view class="card-list" wx:for="{{userList}}" wx:for-index="index" wx:for-item="item" wx:key="*this">
     <view class="card-img">

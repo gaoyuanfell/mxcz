@@ -1,3 +1,21 @@
+export function ChooseAddress(option: wx.ChooseAddressOption = {}){
+  return new Promise<wx.ChooseAddressSuccessCallbackResult>((resolve, reject) => {
+    option.success = (res: wx.ChooseAddressSuccessCallbackResult) => {
+      resolve(res)
+    };
+    option.fail = (res: wx.GeneralCallbackResult) => {
+      reject(res);
+    };
+    wx.chooseAddress(option)
+  });
+}
+
+/**
+ * 显示模态对话框
+ * @export
+ * @param {wx.ShowModalOption} option
+ * @returns
+ */
 export function ShowModal(option: wx.ShowModalOption){
   return new Promise<wx.ShowModalSuccessCallbackResult>((resolve, reject) => {
     option.success = (res: wx.ShowModalSuccessCallbackResult) => {
@@ -9,6 +27,8 @@ export function ShowModal(option: wx.ShowModalOption){
     wx.showModal(option)
   });
 }
+
+
 
 /**
  * 关闭当前页面，返回上一页面或多级页面。可通过 [getCurrentPages()]((页面路由#getcurrentpages)) 获取当前的页面栈，决定需要返回几层。

@@ -27,6 +27,17 @@ export function webUis_(body = {}) {
   return postJson("/web/uis", body);
 }
 
+/**
+ *
+ * 授权获取用户手机号
+ * @export
+ * @param {*} [body={}]
+ * @returns
+ */
+export function webBp_(body = {}) {
+  return postJson("/xcx/bp", body);
+}
+
 interface UploadFileOption {
   filePath: string;
   /** 文件对应的 key，开发者在服务端可以通过这个 key 获取文件的二进制内容 */
