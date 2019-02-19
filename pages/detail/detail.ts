@@ -1,6 +1,6 @@
 import { IMyApp } from '../../app'
 import { wxSubject } from '../../utils/util';
-import { webBp_ } from '../../service/service';
+import { webBp_, activityGet_, attend_, attendAddexpress_ } from '../../service/service';
 
 const app = getApp<IMyApp>()
 
@@ -12,32 +12,64 @@ Page({
       '/img/2.jpg',
       '/img/3.jpg'
     ],
-    indicatorDots: true,
-    indicatorColor: '#fff',
-    indicatorActiveColor: '#ff6600',
-    circular: true,
-    autoplay: false,
-    interval: 5000,
-    duration: 1000,
+    swiper:{
+      indicatorDots: true,
+      indicatorColor: '#fff',
+      indicatorActiveColor: '#ff6600',
+      circular: true,
+      autoplay: true,
+      interval: 3000,
+      duration: 300,
+    },
 
     toView: '',
     scrollTop: 0,
     opacity: 0,
 
     goodsList:[],
-    goods:{
+    goodsCache:{
       number: 1
     },
+    goods:{},
+    activityId:0,
     activity:{},
     user:{},
+    modeState: 0
+  },
+  // 参与
+  partake(){
+    let type = this.data.activity.type || 1
+    if(type){
+      switch(+type){
+        case 1:
+        attend_({
+          activityId:this.data.activityId
+        }).then(res => {
+          if(res.code == 200){
+            this.setData({
+              'modeState':1
+            })
+          }
+        })
+
+        break;
+        case 2:
+        this.setData({
+          'modeState':1
+        })
+        break;
+      }
+    }
   },
 
   addGoods(){
-    this.data.goodsList.push(this.data.goods)
+    this.data.goodsList.push(this.data.goodsCache)
     this.setData({
       goodsList: this.data.goodsList
     });
-    this.data.goods = {number: 1}
+    this.setData({
+      'goodsCache.number':1
+    })
   },
   removeGoods(e){
     let index = e.currentTarget.dataset.index;
@@ -50,11 +82,30 @@ Page({
     let name = e.currentTarget.dataset.name;
     let value = e.detail.value;
     this.setData({
-      [name]: value
+      [name]: this.data.activity.listDemandGoods[value].demandGoodName
+    });
+  },
+  expressChange2(e){
+    let name = e.currentTarget.dataset.name;
+    let value = e.detail.value;
+    this.setData({
+      [name]: ['圆通速递','韵达速递','申通快递','中通快递','顺丰快递'][value]
     });
   },
   goodsSubmit(){
-    console.info()
+    let donationGoods = this.data.goodsList.map(g => `${g.name}*${g.number}`).join(',')
+    this.data.goods
+    let goods = {...this.data.goods}
+    goods.donationGoods = donationGoods;
+    goods.activityId = this.data.activityId;
+    console.info(goods)
+    attendAddexpress_(goods).then(res => {
+      if(res.code == 200){
+        this.setData({
+          modeState: 4
+        })
+      }
+    })
   },
   getPhoneNumber(e){
     if ('getPhoneNumber:ok' != e.detail.errMsg) {
@@ -79,47 +130,24 @@ Page({
     this.setData({
       opacity: scrollTop / 150,
     })
-    let query = wx.createSelectorQuery()
-    query.select(`#a`).boundingClientRect()
-    query.exec((res)=> {
-      console.info(res[0].top)
-    })
-    // if(this.data.isTap){
-    //   this.setData({
-    //     isTap: false,
-    //     scrollTop: scrollTop - 45
-    //   })
-    // }
+    // let query = wx.createSelectorQuery()
+    // query.select(`#a`).boundingClientRect()
+    // query.exec((res)=> {
+    //   console.info(res[0].top)
+    // })
   },
   scrollTo(e){
-
     if(this.data.opacity < 0.5) return;
     let id = e.target.dataset.id;
     this.setData({
       toView: id,
-      // isTap: true,
     })
-
-    // let query = wx.createSelectorQuery()
-
-    // query.select(`#${id}`).boundingClientRect()
-    // query.selectViewport().scrollOffset()
-    // this.setData({
-    //   scrollTop: 0
-    // })
-    // query.exec( (res)=> {
-    //   this.setData({
-    //     scrollTop: this.data.scrollTop + res[0].top - 45
-    //   })
-    //   console.info(res[0])
-    // })
-
-    // query.select(`#${id}`).boundingClientRect((res)=> {
-    //   this.setData({
-    //     scrollTop: res.top
-    //   })
-    //   console.info(res.top)
-    // }).exec()
+  },
+  bindDataValue(e){
+    let {name, value} = e.currentTarget.dataset;
+    this.setData({
+      [name]: value
+    });
   },
   bindKeyInput(e) {
     let name = e.currentTarget.dataset.name;
@@ -132,10 +160,17 @@ Page({
     this.setData({
       'startLoad':true
     })
-    console.info('登陆了')
+    activityGet_({activityId:this.data.activityId}).then(res => {
+      if(res.code == 200){
+        this.setData({
+          activity: res.data
+        })
+      }
+    })
   },
-  onLoad() {
-
+  onLoad(query) {
+    console.info(query)
+    this.data.activityId = query.activityId
   },
   onReady(){
     wxSubject.subscribe(() => {

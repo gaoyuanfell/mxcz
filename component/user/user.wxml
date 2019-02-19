@@ -1,4 +1,4 @@
-<!--pages/user/user.wxml-->
+<!--component/user/user.wxml-->
 <view class="container">
   <view class="user-box flex-center">
     <view>

@@ -1,0 +1,17 @@
+
+var active = function (value) {
+  switch(+value){
+    case 0:
+    return '预备中';
+    case 1:
+    return '进行中';
+    case 2:
+    return '已结束';
+    default:
+    return '预备中';
+  }
+}
+
+module.exports = {
+  active: active
+}

@@ -1,9 +1,15 @@
 <!-- pages/home/home.wxml -->
 <scroll-view class="main" scroll-y="true">
-  <mxcz-index></mxcz-index>
+  <mxcz-index wx:if="{{type == 1}}" bind:detail="goDetail"></mxcz-index>
+  <mxcz-user wx:if="{{type == 2}}"></mxcz-user>
 </scroll-view>
 <view class="tabs flex-center">
-  <view class="item">活动</view>
-  <view class="item">马上参与</view>
-  <view class="item">我的</view>
+  <view class="item" data-type="1" bind:tap="changeType">活动</view>
+  <label class="item" for="home_getUserInfo">
+    <view>马上参与</view>
+  </label>
+  <view class="item" data-type="2" bind:tap="changeType">我的</view>
 </view>
+
+
+<button id="home_getUserInfo" style="display:none;" open-type="getUserInfo" bindgetuserinfo="getUserInfo"></button>

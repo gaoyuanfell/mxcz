@@ -15,8 +15,11 @@ class Interceptors {
 
 interface Result {
   Code?: any;
+  code?: any;
   Msg?: any;
+  msg?: any;
   Data?: any;
+  data?: any;
   [key: string]: any;
 }
 
@@ -45,6 +48,7 @@ export class Request {
         dataType: option.dataType || "json",
         responseType: option.responseType || "text",
         success: (response: wx.RequestSuccessCallbackResult) => {
+          console.info(response)
           if (responseList.length && responseList[0] instanceof Function) {
             try {
               response = responseList[0](response);
@@ -116,6 +120,9 @@ const uploadFile = new UploadFile();
 // 请求拦截器 请求
 request.interceptors.request.use(
   (option: wx.RequestOption) => {
+    wx.showLoading({
+      title: '加载中',
+    })
     if (!option.header) option.header = {};
     option.header["xcxSourceId"] = globalConfig.xcxSourceId;
     option.header["tokenSign"] = globalConfig.tokenSign;
@@ -124,6 +131,7 @@ request.interceptors.request.use(
     return option;
   },
   error => {
+    wx.hideLoading({})
     return error;
   }
 );
@@ -131,14 +139,16 @@ request.interceptors.request.use(
 // 响应拦截器 响应
 request.interceptors.response.use(
   (response: wx.RequestSuccessCallbackResult) => {
+    wx.hideLoading({})
     if (response.statusCode == 200) {
-      if ((<any>response.data).Code == "200") {
-        return response.data;
+      if ((<any>response.data).Code == "200" || (<any>response.data).code == "200") {
+        return response.data || response['Data'];
       }
     }
     throw `${JSON.stringify(response.data)}`;
   },
   error => {
+    wx.hideLoading({})
     return error;
   }
 );

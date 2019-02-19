@@ -1,42 +1,43 @@
 <!-- pages/detail/detail.wxml -->
-<!-- scroll-with-animation="{{true}}" -->
+<wxs module="_date" src="../../wxs/formatDate.wxs"></wxs>
+<wxs module="_string" src="../../wxs/string.wxs"></wxs>
 <scroll-view scroll-y bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" scroll-with-animation="{{true}}" class="scroll">
   <view class="container">
     <view class="swiper-list">
-      <swiper class="swiper" circular="{{circular}}" indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <swiper class="swiper" circular="{{swiper.circular}}" indicator-dots="{{swiper.indicatorDots}}" indicator-color="{{swiper.indicatorColor}}" indicator-active-color="{{swiper.indicatorActiveColor}}" autoplay="{{swiper.autoplay}}" interval="{{swiper.interval}}" duration="{{swiper.duration}}">
         <swiper-item wx:for="{{imgUrls}}" wx:for-index="index" wx:for-item="item" wx:key="*this">
           <image src="{{item}}" class="slide-image" />
         </swiper-item>
       </swiper>
       <view class="swiper-tip">
         已有
-        <text>23</text>
+        <text>{{activity.attenderNum}}</text>
         人参与
       </view>
     </view>
     <view class="card-body">
-      <view class="card-title">(第3期）3月1日青山行动大觉寺捡垃圾</view>
+      <view class="card-title">{{activity.activityTitle}}</view>
       <view class="card-info">
         <view class="item flex-align-center">
           <text class="icon icon-shijian"></text>
-          报名时间： 至 2019-2-26 24：00  截至
+          报名时间： {{ _date.formatDate(activity.signUpStartTime, 'yyyy-MM-dd HH:mm') }} 至 {{ _date.formatDate(activity.signUpEndTime, 'yyyy-MM-dd HH:mm') }}
         </view>
         <view class="item flex-align-center">
           <text class="icon icon-rili"></text>
-          活动时间： 2019-3-1 早上 8：00，2019-3-2 下午1：00
+          活动时间： {{ _date.formatDate(activity.startTime, 'yyyy-MM-dd HH:mm') }} 至 {{ _date.formatDate(activity.endTime, 'yyyy-MM-dd HH:mm') }}
         </view>
         <view class="item flex-align-center">
           <text class="icon icon-dizhi"></text>
-          漕河泾地铁站集合
+          {{activity.activityAddress}}
           <text class="icon icon-dizhi dizhi"></text>
         </view>
         <view class="item flex-align-center user-data">
           <view class="user-head">
-            <image src="/img/5.jpg" />
+            <image src="{{activity.creatorAvatarUrl}}" />
           </view>
           <view class="user-info">
-            <view>负责人：暮雨</view>
-            <view>发起过1次活动</view>
+            <view>负责人：{{activity.creatorName}}</view>
+            <view>发起过{{activity.creatorLaunchNum}}次活动</view>
           </view>
           <text class="user-dianhua icon icon-dianhua"></text>
         </view>
@@ -46,34 +47,24 @@
       <view class="active-title-scroll" id="a"></view>
       <view class="active-title">活动介绍</view>
       <view class="active-desc">
-        今年 1 月，省委省政府下达的精神要求，确定台州市新增对四川省乐山市峨边彝族自治县开展东西部扶贫协作任务，由椒江区实施对口支援。考察归来后，向全市人民发起了捐衣 " 集结号 "。这是首批 " 情系峨边温暖相伴 " 爱心物资，它们是历经数月、集结社会各界爱心力量汇聚而成。即将从这里发往四川省乐山市峨边彝族自治县，为那里的人们带去温暖。
+        {{activity.activityIntroduce}}
       </view>
       <view class="active-title-scroll" id="b"></view>
       <view class="active-title">活动计划</view>
       <view class="active-desc">
-        献一片爱心，送一份温暖！随着经济社会的发展，大家的生活水平不断提高，很多大学生都擅于网购因此都存积着不少闲置的旧衣物，将这些旧衣物作为不可回收利用的普通垃圾处理掉是对资源的浪费。为了积极帮扶生活有困难的家庭和孩子，使他们渡过难关、感受到爱心和温暖，我们将开展此次捐衣活动。
+        {{activity.activityPlan}}
       </view>
       <view class="active-title-scroll" id="c"></view>
       <view class="active-title">期望效果</view>
-      <view class="active-desc">积极弘扬奉献精神、社会责任心，关注社会公益事业。在学校营造良好风气，体现人与人之间的关</view>
+      <view class="active-desc">
+        {{activity.activityEffect}}
+      </view>
       <view class="active-title-scroll" id="d"></view>
       <view class="active-title">需求物品清单</view>
       <view class="active-foods">
-        <view class="flex-justify-between item">
-          <view>M号童装冬衣</view>
-          <view>20/20</view>
-        </view>
-        <view class="flex-justify-between item">
-          <view>29-34保暖鞋</view>
-          <view>20/20</view>
-        </view>
-        <view class="flex-justify-between item">
-          <view>手套</view>
-          <view>20/20</view>
-        </view>
-        <view class="flex-justify-between item">
-          <view>围巾</view>
-          <view>20/20</view>
+        <view class="flex-justify-between item" wx:for="{{activity.listDemandGoods}}" wx:for-index="index" wx:for-item="item" wx:key="*this">
+          <view>{{item.demandGoodName}}</view>
+          <view>{{item.demandGoodNum}}</view>
         </view>
       </view>
       <view class="active-title-scroll" id="e"></view>
@@ -81,49 +72,39 @@
       <view class="active-agency">
         <view class="flex-align-center agency">
           <view>
-            <image src="/img/5.jpg" />
+            <image src="{{activity.organize.publicUrl}}"/>
           </view>
           <view>
-            <view>上海愿望成真慈善基金会</view>
-            <view>统一社会信用代码：53310000MJ49511607</view>
+            <view>{{ activity.organize.organizeName}}</view>
+            <view>统一社会信用代码：{{ activity.organize.organizeCode}}</view>
           </view>
         </view>
         <view class="flex-justify-between-align-center agency-data">
           <view>
-            <view>法定代表 ：黄德利</view>
-            <view>邮箱地址 ：gloria@makeawish-china.com</view>
+            <view>法定代表 ：{{ activity.organize.legalPerson}}</view>
+            <view>邮箱地址 ：{{ activity.organize.organizeEmail}}</view>
           </view>
           <text class="icon icon-dianhua"></text>
         </view>
-        <view>组织住所 ：上海市闵行区吴中路699号C区域一层W043</view>
+        <view>组织住所 ：{{ activity.organize.organizeAddress}}</view>
       </view>
       <view class="active-title-scroll" id="f"></view>
       <view class="active-title">已参与</view>
       <view class="active-people">
-        <view class="flex-justify-between-align-center item">
+
+        <view class="flex-justify-between-align-center item" wx:for="{{activity.listUserAttend}}" wx:for-index="index" wx:for-item="item" wx:key="*this">
           <view class="flex-center people-data">
             <view>
-              <image src="/img/5.jpg" />
+              <image src="{{item.avatarUrl}}" />
             </view>
             <view>
-              <view>林晓晓</view>
-              <view>已参与0次活动</view>
+              <view>{{item.nickName}}</view>
+              <view>已参与{{item.activityCount}}次活动</view>
             </view>
           </view>
-          <view class="people-data-text">已寄出</view>
+          <view class="people-data-text">{{item.donationGoods || '其他'}}({{_string.sign(item.signStatus)}})</view>
         </view>
-        <view class="flex-justify-between-align-center item">
-          <view class="flex-center people-data">
-            <view>
-              <image src="/img/5.jpg" />
-            </view>
-            <view>
-              <view>程小明</view>
-              <view>已参与3次活动</view>
-            </view>
-          </view>
-          <view class="people-data-text">手套 X 1</view>
-        </view>
+
       </view>
       <view class="active-title-scroll" id="g"></view>
       <view class="active-title">活动反馈</view>
@@ -150,99 +131,125 @@
     <text class="icon icon-fenxiang"></text>
   </view>
   <view>
-    <text>7</text>
+    <text>{{activity.attenderNum}}</text>
     人参加
   </view>
-  <view class="active">
+  <view wx:if="{{activity.active == 0}}" class="active disabled flex-center" bind:tap="partake">
+    <view>未开始</view>
+  </view>
+  <view wx:if="{{activity.active == 2}}" class="active disabled flex-center">
+    <view>活动已截止</view>
+  </view>
+  <view wx:if="{{!activity.attend && activity.active == 1}}" class="active flex-center" bind:tap="partake">
     <view>马上参与</view>
+  </view>
+  <view wx:if="{{activity.attend && activity.active == 1}}" class="active">
+    <view>已报名</view>
     <view>提交运单号</view>
   </view>
 </view>
 
-<!-- <view class="mode">
-  <view class="mask"></view>
+<view class="mode" wx:if="{{modeState == 1}}">
+  <view class="mask" data-name="modeState" data-value="0" bind:tap="bindDataValue"></view>
   <view class="mode-container">
     <view class="sign_up flex-center">
       <text class="icon icon-duihao"></text>
       报名成功
     </view>
-    <view class="active-btn">去寄快递</view>
+    <view class="active-btn" data-name="modeState" data-value="2" bind:tap="bindDataValue">去寄快递</view>
   </view>
-</view> -->
+</view>
 
-<!-- <view class="mode">
-  <view class="mask"></view>
+<view class="mode" wx:if="{{modeState == 2}}">
+  <view class="mask" data-name="modeState" data-value="0" bind:tap="bindDataValue"></view>
   <view class="mode-container">
     <view class="active-address flex-wrap-align-center">
-      <view>收件人： 程XX</view>
+      <view>
+        {{activity.requirement}}
+      </view>
+      <!-- <view>收件人： 程XX</view>
       <view>收件电话：158********</view>
-      <view>收件地址：上海市徐汇区上中路159号</view>
+      <view>收件地址：上海市徐汇区上中路159号</view> -->
     </view>
-    <view class="active-btn">填写物流单号</view>
+    <view class="active-btn" data-name="modeState" data-value="3" bind:tap="bindDataValue">填写物流单号</view>
   </view>
-</view> -->
+</view>
 
-<!-- <view class="mode">
-  <view class="mask"></view>
+<view class="mode" wx:if="{{modeState == 3}}">
+  <view class="mask" data-name="modeState" data-value="0" bind:tap="bindDataValue"></view>
   <view class="mode-container">
     <view class="active-express">
 
       <view class="flex-wrap label-box">
         <view class="label-btn" wx:for="{{goodsList}}" wx:for-index="index" wx:for-item="item" wx:key="*this">
-          <text>{{item.name}}</text>
+          <text>{{item.name}}*{{item.number}}</text>
           <text class="icon icon-close" data-item="{{item}}" data-index="{{index}}" bindtap="removeGoods"></text>
         </view>
       </view>
 
       <view class="goods flex">
         <view class="form-ctrl">
-          <picker class="goods-name" mode="selector" range="{{['a','b','c','d']}}" data-name="goods.name" bindchange="expressChange">
-            <view class="selector-text">
-              选择捐赠物品类型
+          <picker class="goods-name" mode="selector" range="{{activity.listDemandGoods}}" range-key="{{'demandGoodName'}}" data-name="goodsCache.name" bindchange="expressChange">
+            <view class="selector-text {{ goodsCache.name?'active':'' }}">
+              {{goodsCache.name || '选择捐赠物品类型'}}
             </view>
           </picker>
         </view>
         <view class="form-ctrl goods-number">
-          <input class="form-input" value="1" placeholder="数量" data-name="goods.number" bindinput="bindKeyInput"/>
+          <input class="form-input" value="1" placeholder="数量" data-name="goodsCache.number" bindinput="bindKeyInput"/>
         </view>
         <button class="add-goods" bind:tap="addGoods">+ 添加</button>
       </view>
 
       <view class="form-ctrl">
-        <picker mode="selector" range="{{[1,2,3,4]}}" data-name="activity.order" bindchange="expressChange">
-          <view class="selector-text">
-            选择快递
+        <picker mode="selector" range="{{['圆通速递','韵达速递','申通快递','中通快递','顺丰快递']}}" data-name="goods.expressType" bindchange="expressChange2">
+          <view class="selector-text {{goods.expressType?'active':''}}">
+            {{goods.expressType || '选择快递'}}
           </view>
         </picker>
       </view>
       <view class="form-ctrl">
-        <input class="form-input" placeholder="填写编号" data-name="activity.number" bindinput="bindKeyInput"/>
+        <input class="form-input" placeholder="填写编号" data-name="goods.expressCode" bindinput="bindKeyInput"/>
       </view>
       <view class="form-ctrl">
-        <textarea class="form-input" placeholder="留言" data-name="activity.remark" bindinput="bindKeyInput"></textarea>
+        <textarea class="form-input" placeholder="留言" data-name="goods.message" bindinput="bindKeyInput"></textarea>
       </view>
 
     </view>
     <view class="active-btn" bind:tap="goodsSubmit">提交</view>
   </view>
-</view> -->
+</view>
 
-<!-- <view class="mode">
-  <view class="mask"></view>
+<view class="mode" wx:if="{{modeState == 4}}">
+  <view class="mask" data-name="modeState" data-value="0" bind:tap="bindDataValue"></view>
+  <view class="mode-container">
+    <view class="sign_up flex-center">
+      <text class="icon icon-duihao"></text>
+      提交成功
+    </view>
+    <view class="active-btn" data-name="modeState" data-value="0" bind:tap="bindDataValue">确定</view>
+  </view>
+</view>
+
+<view class="mode" wx:if="{{modeState == 5}}">
+  <view class="mask" data-name="modeState" data-value="0" bind:tap="bindDataValue"></view>
   <view class="mode-container">
     <view class="active-require flex-wrap-align-center">
-      <view>1.维护义工服务形象。统一穿着义工马甲，态度热情，礼貌待人，展现出良好的义工服务形象。</view>
+      <view>
+        {{activity.requirement}}
+      </view>
+      <!-- <view>1.维护义工服务形象。统一穿着义工马甲，态度热情，礼貌待人，展现出良好的义工服务形象。</view>
       <view>2.保证服务到岗。守时及紧守工作岗位；中途轮流休息，保证有人在岗。</view>
       <view>3.宣传方面：遇到媒体记者采访，建议不随意作答，礼貌建议其采访烈士陵园相关工作人员。</view>
-      <view>提交联系方式和报名选择日期，由工作人员随后联系安排。</view>
+      <view>提交联系方式和报名选择日期，由工作人员随后联系安排。</view> -->
     </view>
     <button open-type="getPhoneNumber" bind:getphonenumber="getPhoneNumber">我要报名</button>
-    <view class="active-btn" >我要报名</view>
+    <view class="active-btn" > <label for="getPhoneNumber">我要报名</label> </view>
   </view>
-</view> -->
+</view>
 
-<view class="mode">
-  <view class="mask"></view>
+<view class="mode" wx:if="{{modeState == 6}}">
+  <view class="mask" data-name="modeState" data-value="0" bind:tap="bindDataValue"></view>
   <view class="mode-container">
     <view class="active-express">
       <view class="form-ctrl">
@@ -252,7 +259,8 @@
         <input class="form-input" placeholder="请确认您的联系方式" data-name="user.number" bindinput="bindKeyInput"/>
       </view>
     </view>
-    <!-- <button open-type="getPhoneNumber" bind:getphonenumber="getPhoneNumber">我要报名</button> -->
     <view class="active-btn" bind:tap="userDataSubmit">提交</view>
   </view>
 </view>
+
+<button id="getPhoneNumber" style="display:none" open-type="getPhoneNumber" bind:getphonenumber="getPhoneNumber">我要报名</button>

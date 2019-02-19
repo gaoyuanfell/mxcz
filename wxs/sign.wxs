@@ -1,0 +1,15 @@
+
+var sign = function (value) {
+  switch(+value){
+    case 0:
+    return '未签收';
+    case 1:
+    return '已签收';
+    default:
+    return '未签收';
+  }
+}
+
+module.exports = {
+  sign: sign
+}

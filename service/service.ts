@@ -1,5 +1,78 @@
-import { postJson, loadFile } from "./http";
+import { postJson, loadFile, get } from "./http";
 import { WxLogin } from "../utils/util";
+
+const mxczUrl = '/charitable_xcx'
+
+/**
+ *
+ * 活动列表
+ * page 是 int 页码
+ * limit 是 int 条数
+ * @export
+ * @param {*} [body={}]
+ * @returns
+ */
+export function activityList_(body = {}){
+  console.info(body)
+  return postJson(`${mxczUrl}/activity/list`, body)
+}
+
+/**
+ *
+ * 我参加的活动
+ * @export
+ * @param {*} [body={}]
+ * @returns
+ */
+export function activityMy_(body = {}){
+  return get(`${mxczUrl}/activity/my`, body)
+}
+
+/**
+ *
+ * 参加报名活动
+ * @export
+ * @param {*} [body={}]
+ * @returns
+ */
+export function attend_(body = {}){
+  return postJson(`${mxczUrl}/attend/attend`, body)
+}
+
+/**
+ *
+ * 邮寄捐赠物品
+ * @export
+ * @param {*} [body={}]
+ * @returns
+ */
+export function attendAddexpress_(body = {}){
+  return postJson(`${mxczUrl}/attend/addexpress`, body)
+}
+
+
+/**
+ *
+ * 参加报名活动
+ * activityId
+ * @export
+ * @param {*} [body={}]
+ * @returns
+ */
+export function activityGet_(body = {}){
+  return get(`${mxczUrl}/activity/get`, body)
+}
+
+/**
+ *
+ * 爱心榜单
+ * @export
+ * @param {*} [body={}]
+ * @returns
+ */
+export function activityRanking_(body = {}){
+  return get(`${mxczUrl}/activity/ranking`, body)
+}
 
 // 接口统一文件
 /**

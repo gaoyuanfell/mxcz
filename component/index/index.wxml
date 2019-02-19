@@ -1,35 +1,37 @@
 <!--component/index.wxml-->
+<wxs module="_date" src="../../wxs/formatDate.wxs"></wxs>
+<wxs module="_string" src="../../wxs/string.wxs"></wxs>
 <view class="container">
-  <view class="card-list" wx:for="{{userList}}" wx:for-index="index" wx:for-item="item" wx:key="*this">
+  <view class="card-list" wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="*this" data-activity-id="{{item.activityId}}" data-index="{{index}}" bind:tap="goDetail">
     <view class="card-img">
-      <image mode="aspectFit" src="/img/1.jpg" />
+      <image mode="aspectFit" src="{{item.coverImageUrl}}" />
     </view>
 
     <view class="card-body">
-      <view class="card-title">(第3期）3月1日青山行动大觉寺捡垃圾</view>
+      <view class="card-title">{{item.activityTitle}}</view>
       <view class="card-info">
         <view class="item flex-align-center">
           <text class="icon icon-shijian"></text>
-          报名时间： 至 2019-2-26 24：00  截至
+          报名时间：{{ _date.formatDate(item.signUpStartTime, 'yyyy-MM-dd HH:mm') }} 至 {{ _date.formatDate(item.signUpEndTime, 'yyyy-MM-dd HH:mm') }}
         </view>
         <view class="item flex-align-center">
           <text class="icon icon-rili"></text>
-          活动时间： 2019-3-1 早上 8：00，2019-3-2 下午1：00
+          活动时间： {{ _date.formatDate(item.startTime, 'yyyy-MM-dd HH:mm') }} 至 {{ _date.formatDate(item.endTime, 'yyyy-MM-dd HH:mm') }}
         </view>
         <view class="item flex-align-center">
           <text class="icon icon-dizhi"></text>
-          漕河泾地铁站集合
+          {{item.activityAddress}}
         </view>
         <view class="item flex-align-center">
           <text class="icon icon-renqun"></text>
-          8-14人
+          {{item.signUpNum}}
         </view>
       </view>
       <view class="card-people">
-        <view>已参与：32人</view>
+        <view>已参与：{{item.attenderNum}}人</view>
         <view class="card-people-head">
-          <view class="head-item" style="z-index: {{index}};left: {{100 * index - index * 20}}rpx" wx:for="{{userList}}" wx:for-index="index" wx:for-item="item" wx:key="*this">
-            <image mode="aspectFit" src="/img/5.jpg"/>
+          <view class="head-item" style="z-index: {{index}};left: {{100 * index - index * 20}}rpx" wx:for="{{item.listUserAttend}}" wx:for-index="index" wx:for-item="item2" wx:key="*this">
+            <image mode="aspectFit" src="{{item2.avatarUrl}}"/>
           </view>
         </view>
       </view>
@@ -37,8 +39,8 @@
     </view>
 
     <view class="card-tip active">
-      <view>第三期</view>
-      <view>正在进行</view>
+      <view>第{{item.activityPeriods}}期</view>
+      <view>{{_string.active(item.active)}}</view>
     </view>
 
   </view>

@@ -40,18 +40,17 @@
     font-weight: 700;
     font-size: 32rpx;
     border-bottom: 1px solid #ccc;
-    padding: 10rpx 0;
+    padding: 10rpx;
   }
   .card-info{
     color:#666;
     font-size:24rpx;
-    padding: 10rpx 0;
     .icon{
       color:#666;
       padding-right:15rpx;
     }
     > .item {
-      padding: 2rpx 0;
+      padding: 10rpx;
       border-bottom: 1rpx solid #ccc;
       &:last-child{
         border-bottom: none;
@@ -59,6 +58,7 @@
     }
     .dizhi{
       margin-left: auto;
+      color:#1aad19;
     }
   }
   .user-data{
@@ -252,10 +252,10 @@
     height: 100%;
     border-left: 1rpx solid transparent;
     color: #fff;
-    font-size: 32rpx;
+    font-size: 24rpx;
     text-align: center;
-    > view:last-child{
-      font-size: 24rpx;
+    > view:first-child{
+      font-size: 32rpx;
     }
     &.active{
       background: #ff6600;
@@ -385,6 +385,9 @@
   padding: 0 10rpx;
   height: 54rpx;
   line-height: 54rpx;
+  &.active{
+    color: #000;
+  }
 }
 
 .form-ctrl{

@@ -1,8 +1,6 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/detail/detail",
-    "pages/user/user",
     "pages/rank/rank",
     "pages/home/home"
   ],
@@ -12,9 +10,9 @@
     }
   },
   "functionalPages": true,
-  "component": true,
   "usingComponents": {
-    "mxcz-index": "component/index/index"
+    "mxcz-index": "component/index/index",
+    "mxcz-user": "component/user/user"
   },
   "window": {
     "backgroundTextStyle": "light",
